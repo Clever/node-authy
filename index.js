@@ -154,24 +154,3 @@ Authy.prototype.request_call = function (id, force, callback) {
         }
     });
 };
-
-// Utility functions. Should live somewhere else probably.
-function isJSON(data) {
-    if (typeof data === 'object') return true;
-    try {
-        data = JSON.parse(data);
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
-
-function toJSON(data) {
-    if (typeof data === 'object') return data;
-    try {
-        data = JSON.parse(data);
-        return data;
-    } catch (e) {
-        return data;
-    }
-}
