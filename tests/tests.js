@@ -4,6 +4,13 @@ var authy = require('../index')(apikey,'http://sandbox-api.authy.com');
 var test_user = {email: 'baldwin@andyet.net', phone: '825-589-8570', country: '5'};
 
 /*
+ * Nodeunit swallows uncaught exceptions--get them back!
+ */
+process.on('uncaughtException', function(err) {
+    console.error(err.stack);
+});
+
+/*
  *  Register New User Tests
  */
 exports['Register New User - Without country code'] = function (test) {
