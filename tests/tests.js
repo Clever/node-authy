@@ -16,6 +16,7 @@ process.on('uncaughtException', function(err) {
 exports['Register New User - Without country code'] = function (test) {
     authy.register_user(test_user.email, test_user.phone, function (err, res) {
         test.ok(res);
+        test.equal(typeof(res), 'object', 'Response should be an object.');
         test.ok(res.user);
         test_user.id = res.user.id; // Save ID for future tests
         test.done();
@@ -25,6 +26,7 @@ exports['Register New User - Without country code'] = function (test) {
 exports['Register New User - With country code'] = function (test) {
     authy.register_user(test_user.email, test_user.phone, test_user.country, function (err, res) {
         test.ok(res);
+        test.equal(typeof(res), 'object', 'Response should be an object.');
         test.done();
     });
 };
@@ -39,6 +41,7 @@ exports['Register New User - Blank Email'] = function (test) {
 exports['Verify Token'] = function (test) {
     authy.verify(test_user.id, '0000000', function (err, res) {
         test.ok(res);
+        test.equal(typeof(res), 'object', 'Response should be an object.');
         test.done();
     });
 };
@@ -46,6 +49,7 @@ exports['Verify Token'] = function (test) {
 exports['Verify Token - Force'] = function (test) {
     authy.verify(test_user.id, '0000000', true, function (err, res) {
         test.ok(res);
+        test.equal(typeof(res), 'object', 'Response should be an object.');
         test.done();
     });
 };
