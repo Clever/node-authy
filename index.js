@@ -27,14 +27,15 @@ Authy.prototype.register_user = function (email, cellphone, country_code, callba
         qs: {
             api_key: this.apiKey
         },
+        json: true,
         jar: false,
         strictSSL: true
     }, function (err, res, body) {
         if (!err) {
             if(res.statusCode === 200) {
-                callback(null, toJSON(body));
+                callback(null, body);
             } else {
-                callback(toJSON(body));
+                callback(body);
             }
         } else {
             callback(err);
@@ -48,14 +49,15 @@ Authy.prototype.delete_user = function (id, callback) {
         qs: {
             api_key: this.apiKey
         },
+        json: true,
         jar: false,
         strictSSL: true
     }, function (err, res, body) {
         if (!err) {
             if(res.statusCode === 200) {
-                callback(null, toJSON(body));
+                callback(null, body);
             } else {
-                callback(toJSON(body));
+                callback(body);
             }
         } else {
             callback(err);
@@ -77,14 +79,15 @@ Authy.prototype.verify = function (id, token, force, callback) {
     request.get({
         url: this.apiURL + "/protected/json/verify/" + token + "/" + id,
         qs: qs,
+        json: true,
         jar: false,
         strictSSL: true
     }, function (err, res, body) {
         if (!err) {
             if (res.statusCode === 200) {
-                callback(null, toJSON(body));
+                callback(null, body);
             } else {
-                callback(toJSON(body));
+                callback(body);
             }
         } else {
             callback(err);
@@ -106,14 +109,15 @@ Authy.prototype.request_sms = function (id, force, callback) {
     request.get({
         url: this.apiURL + "/protected/json/sms/" + id,
         qs: qs,
+        json: true,
         jar: false,
         strictSSL: true
     }, function (err, res, body) {
         if (!err) {
             if (res.statusCode === 200) {
-                callback(null, toJSON(body));
+                callback(null, body);
             } else {
-                callback(toJSON(body));
+                callback(body);
             }
         } else {
             callback(err);
@@ -135,14 +139,15 @@ Authy.prototype.request_call = function (id, force, callback) {
     request.get({
         url: this.apiURL + "/protected/json/call/" + id,
         qs: qs,
+        json: true,
         jar: false,
         strictSSL: true
     }, function (err, res, body) {
         if (!err) {
             if (res.statusCode === 200) {
-                callback(null, toJSON(body));
+                callback(null, body);
             } else {
-                callback(toJSON(body));
+                callback(body);
             }
         } else {
             callback(err);
