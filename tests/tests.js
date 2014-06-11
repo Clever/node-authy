@@ -32,7 +32,30 @@ exports['Register New User - With country code'] = function (test) {
 };
 
 exports['Register New User - Blank Email'] = function (test) {
-    test.done();
+    authy.register_user(null, test_user.phone, test_user.country, function (err, res) {
+        test.ok(err, 'Should get error.');
+        test.equal(typeof(err), 'object', 'Error should be an object.');
+        test.equal(err.success, false, 'Success should be false.')
+        test.done();
+    });
+};
+
+exports['Register New User - Blank Phone'] = function (test) {
+    authy.register_user(test_user.email, null, test_user.country, function (err, res) {
+        test.ok(err, 'Should get error.');
+        test.equal(typeof(err), 'object', 'Error should be an object.');
+        test.equal(err.success, false, 'Success should be false.')
+        test.done();
+    });
+};
+
+exports['Register New User - Invalid Country Code'] = function (test) {
+    authy.register_user(test_user.email, null, -100, function (err, res) {
+        test.ok(err, 'Should get error.');
+        test.equal(typeof(err), 'object', 'Error should be an object.');
+        test.equal(err.success, false, 'Success should be false.')
+        test.done();
+    });
 };
 
 /*
